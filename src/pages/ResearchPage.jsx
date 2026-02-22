@@ -138,7 +138,7 @@ export default function ResearchPage() {
                 Research Papers
               </h1>
               <p className="text-xs md:text-sm text-white/60 mt-0.5 md:mt-1 line-clamp-2">
-                Published work across AI, ML, data science & cybersecurity.
+                Playlist of all my published and research works.
               </p>
               <div className="flex items-center justify-center md:justify-start gap-1.5 text-xs md:text-sm text-white/70 mt-0.5 md:mt-1">
                 <span className="font-semibold text-white">{profile.name}</span>

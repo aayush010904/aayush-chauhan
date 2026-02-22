@@ -4,7 +4,9 @@ import { motion } from 'framer-motion';
 export default function MusicEmbed({ track }) {
   const [loaded, setLoaded] = useState(false);
   const isPlaylist = track.type === 'playlist';
-  const height = isPlaylist ? 380 : 152;
+  const isAlbum = track.type === 'album';
+  const isArtist = track.type === 'artist';
+  const height = isPlaylist || isAlbum ? 380 : isArtist ? 352 : 152;
 
   return (
     <motion.div

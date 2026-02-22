@@ -40,8 +40,8 @@ export default function ProjectsPage() {
     <div className="space-y-5 pb-6">
       <ScrollReveal>
         <section>
-          <h1 className="text-3xl font-bold mb-1.5">Project Albums</h1>
-          <p className="text-textMuted text-[15px]">Explore flagship builds with outcomes, architecture details, and delivery impact.</p>
+          <h1 className="text-3xl font-bold mb-1.5">Projects</h1>
+          <p className="text-textMuted text-[15px]">Explore my projects.</p>
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}

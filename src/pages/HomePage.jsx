@@ -85,7 +85,7 @@ export default function HomePage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.45, delay: 0.2 }}
-            className="hidden md:flex absolute inset-y-0 right-0 w-52 lg:w-64 items-end justify-end z-10 pointer-events-none select-none"
+            className="hidden md:flex absolute inset-y-0 right-16 lg:right-24 w-52 lg:w-64 items-end justify-end z-10 pointer-events-none select-none"
           >
             <img
               src="/img/avatar.png"

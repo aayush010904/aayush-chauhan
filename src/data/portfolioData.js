@@ -257,33 +257,25 @@ export const research = [
 export const tracks = [
   {
     id: 'trk-1',
-    title: 'Midnight Loops',
-    description: 'Ambient coding session inspired by rain and neon city lights.',
-    spotifyUri: 'https://open.spotify.com/embed/track/4cOdK2wGLETKBW3PvgPWqT?utm_source=generator&theme=0',
+    title: 'Latest Single',
+    description: 'My newest release — give it a spin.',
+    spotifyUri: 'https://open.spotify.com/embed/track/41pIXZxFAghGAwunrizgky?utm_source=generator&theme=0',
     type: 'track',
   },
   {
     id: 'trk-2',
-    title: 'Signal Drift',
-    description: 'Melodic synth textures and low-end groove experiments.',
-    spotifyUri: 'https://open.spotify.com/embed/track/7qiZfU4dY1lWllzX7mPBI3?utm_source=generator&theme=0',
-    type: 'track',
-  },
-  {
-    id: 'trk-3',
-    title: 'Deep Focus Playlist',
-    description: 'Curated playlist for long coding sessions and deep work blocks.',
-    spotifyUri: 'https://open.spotify.com/embed/playlist/37i9dQZF1DWZeKCadgRdKQ?utm_source=generator&theme=0',
-    type: 'playlist',
-  },
-  {
-    id: 'trk-4',
-    title: 'Lo-Fi Beats',
-    description: 'Warm lo-fi beats to keep the creative flow going.',
-    spotifyUri: 'https://open.spotify.com/embed/track/2LKOHdMsL0K0PBxqEKx4Yi?utm_source=generator&theme=0',
-    type: 'track',
+    title: 'Latest EP',
+    description: 'My latest album / EP — a full body of work.',
+    spotifyUri: 'https://open.spotify.com/embed/album/5Tj54ncAzhxNDgMy43J7zU?utm_source=generator&theme=0',
+    type: 'album',
   },
 ];
+
+export const artistProfile = {
+  name: 'Aayush Chauhan',
+  spotifyUri: 'https://open.spotify.com/embed/artist/3TSz0LrqCB4Ly60OdtRslG?utm_source=generator&theme=0',
+  profileUrl: 'https://open.spotify.com/artist/3TSz0LrqCB4Ly60OdtRslG',
+};
 
 export const topSuggestions = [
   { label: 'All', to: '/home' },
