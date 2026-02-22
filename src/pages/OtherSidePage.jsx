@@ -113,7 +113,7 @@ export default function OtherSidePage() {
                   className="text-slate-300 mt-4 max-w-2xl text-[15px] leading-relaxed"
                 >
                   Outside engineering and research, I find creative expression through music.
-                  Rhythm, structure, and emotional tone aren't just artistic tools — they shape
+                  Rhythm, structure, and emotional tone aren't just artistic tools they shape
                   how I think about product design and user experience.
                 </motion.p>
               </div>
