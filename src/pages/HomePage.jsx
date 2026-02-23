@@ -66,7 +66,8 @@ export default function HomePage() {
               {/* Resume Play Button */}
               <motion.a
                 href={profile.contact.resumeUrl}
-                download
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group relative inline-flex items-center gap-0 rounded-full bg-white/[0.07] hover:bg-white/[0.12] text-white font-medium h-10 overflow-hidden transition-all duration-300 ease-out"
                 whileHover={{ width: 'auto' }}
                 whileTap={{ scale: 0.95 }}

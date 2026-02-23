@@ -124,7 +124,7 @@ export default function ContactPage() {
         <ScrollReveal delay={0.1}>
           <StaggerContainer className="space-y-2">
             <StaggerItem>
-              <a href={`mailto:${profile.contact.email}`} className="flex items-center gap-3 rounded-lg bg-white/[0.04] px-3.5 py-3 hover:bg-white/[0.07] transition-all duration-220 ease-out-expo group">
+              <a href={`mailto:${profile.contact.email}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 rounded-lg bg-white/[0.04] px-3.5 py-3 hover:bg-white/[0.07] transition-all duration-220 ease-out-expo group">
                 <Mail size={16} className="text-textMuted group-hover:text-accent transition-colors" />
                 <span className="text-sm font-medium">Email Me</span>
               </a>
@@ -144,6 +144,8 @@ export default function ContactPage() {
             <StaggerItem>
               <motion.a
                 href={profile.contact.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="flex items-center gap-3 rounded-full bg-accent text-black font-medium px-4 py-2.5 hover:bg-accent-hover transition-colors duration-150 shadow-lg shadow-accent/20"

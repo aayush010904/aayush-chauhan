@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Play, Clock3, FileText, BookOpen } from 'lucide-react';
 import ScrollReveal from '../components/animation/ScrollReveal';
@@ -103,6 +103,7 @@ function ResearchRow({ item, index }) {
 }
 
 export default function ResearchPage() {
+  const navigate = useNavigate();
   const { query } = useSearch();
 
   const filteredResearch = useMemo(() => {
@@ -154,8 +155,16 @@ export default function ResearchPage() {
 
       {/* ── Action Row ── */}
       <ScrollReveal delay={0.05}>
-        <div className="flex items-center gap-4 px-5 md:px-8 py-4 md:py-5 bg-gradient-to-b from-[#14261d]/60 to-transparent">
-          <button className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-accent flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-transform duration-150">
+        <div className="flex items-center justify-center gap-4 px-5 md:px-8 py-4 md:py-5 bg-gradient-to-b from-[#14261d]/60 to-transparent">
+          <button
+            onClick={() => {
+              if (research.length > 0) {
+                navigate(`/research/${research[0].slug}`);
+              }
+            }}
+            className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-accent flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-transform duration-150"
+            aria-label="Open first research"
+          >
             <Play className="w-5 h-5 md:w-6 md:h-6 text-black fill-black ml-0.5" />
           </button>
         </div>

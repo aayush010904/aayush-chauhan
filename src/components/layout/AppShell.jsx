@@ -57,12 +57,13 @@ export default function AppShell({ children }) {
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
-            className="flex-1 overflow-y-auto scroll-container scrollbar-thin px-3 md:px-6 pb-24 md:pb-6 pt-1"
+            className="flex-1 overflow-y-auto scroll-container scrollbar-thin px-3 md:px-6 pb-[calc(8.5rem+env(safe-area-inset-bottom))] md:pb-6 pt-1"
           >
             {children}
           </main>
         </div>
       </div>
+      <div className="md:hidden h-[calc(4.5rem+env(safe-area-inset-bottom))] shrink-0" aria-hidden="true" />
       {/* Fixed playback bar at bottom */}
       <PlaybackBar />
     </div>
