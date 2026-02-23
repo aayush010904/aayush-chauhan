@@ -1,5 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 
 const navItems = [
   { to: '/home', label: 'Home' },
@@ -12,10 +13,57 @@ const navItems = [
 
 export default function MobileNav() {
   const location = useLocation();
+  const pillRefs = useRef({});
+  const containerRef = useRef(null);
+
+  const scrollPillIntoView = (pillNode) => {
+    if (!pillNode || !containerRef.current) return;
+
+    const container = containerRef.current;
+    const gap = 12;
+    const maxScrollLeft = Math.max(0, container.scrollWidth - container.clientWidth);
+    const currentScroll = container.scrollLeft;
+
+    const pillLeft = pillNode.offsetLeft;
+    const pillRight = pillLeft + pillNode.offsetWidth;
+    const visibleLeft = currentScroll + gap;
+    const visibleRight = currentScroll + container.clientWidth - gap;
+
+    let targetScroll = null;
+
+    if (pillLeft < visibleLeft) {
+      targetScroll = pillLeft - gap;
+    } else if (pillRight > visibleRight) {
+      targetScroll = pillRight - container.clientWidth + gap;
+    }
+
+    if (targetScroll === null) {
+      return;
+    }
+
+    container.scrollTo({
+      left: Math.max(0, Math.min(maxScrollLeft, targetScroll)),
+      behavior: 'smooth',
+    });
+  };
+
+  useEffect(() => {
+    const activeItem = navItems.find(
+      (item) => location.pathname === item.to || location.pathname.startsWith(`${item.to}/`),
+    );
+
+    if (!activeItem) return;
+
+    const frameId = window.requestAnimationFrame(() => {
+      scrollPillIntoView(pillRefs.current[activeItem.to]);
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [location.pathname]);
 
   return (
     <nav className="md:hidden px-3 py-1.5" style={{ minHeight: 'auto' }}>
-      <div className="flex gap-2 overflow-x-auto no-scrollbar">
+      <div ref={containerRef} className="flex gap-2 overflow-x-auto no-scrollbar">
         {navItems.map((item) => {
           const isActive = location.pathname === item.to || location.pathname.startsWith(`${item.to}/`);
           const isAccent = item.accent;
@@ -29,6 +77,14 @@ export default function MobileNav() {
             <NavLink
               key={item.to}
               to={item.to}
+              ref={(node) => {
+                if (node) {
+                  pillRefs.current[item.to] = node;
+                }
+              }}
+              onClick={(event) => {
+                scrollPillIntoView(event.currentTarget);
+              }}
               className="relative shrink-0"
               style={{ minHeight: 'auto', minWidth: 'auto' }}
             >

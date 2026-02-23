@@ -19,7 +19,9 @@ export default function Topbar() {
   const navigate = useNavigate();
   const { query, setQuery } = useSearch();
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const inputRef = useRef(null);
+  const mobileInputRef = useRef(null);
 
   const pageTitle = useMemo(() => {
     if (location.pathname.startsWith('/projects/')) return 'Project Detail';
@@ -67,6 +69,16 @@ export default function Topbar() {
         <div className="flex items-center gap-2 md:gap-3">
           <div className="flex items-center gap-1 md:gap-2 shrink-0">
             <button
+              onClick={() => {
+                setIsMobileSearchOpen((prev) => !prev);
+                setTimeout(() => mobileInputRef.current?.focus(), 0);
+              }}
+              className="md:hidden p-1.5 rounded-full bg-black/60 hover:bg-black/80 hover:scale-105 active:scale-95 transition-all duration-150"
+              aria-label="Toggle search"
+            >
+              <Search size={15} />
+            </button>
+            <button
               onClick={() => navigate(-1)}
               className="p-1.5 rounded-full bg-black/60 hover:bg-black/80 hover:scale-105 active:scale-95 transition-all duration-150"
               aria-label="Go back"
@@ -91,7 +103,7 @@ export default function Topbar() {
             </motion.h2>
           </div>
 
-          <div className="relative flex-1 md:max-w-sm md:ml-auto z-30">
+          <div className="relative flex-1 md:max-w-sm md:ml-auto z-30 hidden md:block">
             <Search
               className={`absolute left-3 top-1/2 -translate-y-1/2 transition-colors duration-150 ${
                 isSearchFocused ? 'text-white' : 'text-textMuted'
@@ -149,6 +161,81 @@ export default function Topbar() {
             </AnimatePresence>
           </div>
         </div>
+
+        <AnimatePresence>
+          {isMobileSearchOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="md:hidden relative z-30"
+            >
+              <div className="relative">
+                <Search
+                  className={`absolute left-3 top-1/2 -translate-y-1/2 transition-colors duration-150 ${
+                    isSearchFocused ? 'text-white' : 'text-textMuted'
+                  }`}
+                  size={15}
+                />
+                <input
+                  ref={mobileInputRef}
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                  placeholder="Search projects & research"
+                  className={`w-full rounded-full bg-[#1a1a1a] pl-9 pr-14 py-1.5 text-[13px] transition-all duration-220 ease-out-expo focus:outline-none ${
+                    isSearchFocused
+                      ? 'bg-[#222] ring-1 ring-white/20 shadow-lg shadow-black/20'
+                      : 'hover:bg-[#1f1f1f]'
+                  }`}
+                />
+                <button
+                  onClick={() => {
+                    setQuery('');
+                    setIsMobileSearchOpen(false);
+                  }}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-textMuted hover:text-white transition-colors"
+                  aria-label="Close search"
+                >
+                  <X size={14} />
+                </button>
+              </div>
+
+              <AnimatePresence>
+                {query.trim() && isSearchFocused && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -4, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -4, scale: 0.98 }}
+                    transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute mt-2 w-full rounded-lg bg-[#1a1a1a] p-1.5 shadow-panel-lg"
+                  >
+                    {globalMatches.length ? (
+                      globalMatches.map((result) => (
+                        <Link
+                          key={result.id}
+                          to={result.to}
+                          onClick={() => {
+                            setQuery('');
+                            setIsMobileSearchOpen(false);
+                          }}
+                          className="flex items-center justify-between rounded-md px-3 py-2 hover:bg-white/5 transition-colors duration-150 group"
+                        >
+                          <span className="font-medium text-sm group-hover:text-white transition-colors">{result.title}</span>
+                          <span className="text-[11px] text-accent font-medium">{result.category}</span>
+                        </Link>
+                      ))
+                    ) : (
+                      <p className="px-3 py-2 text-sm text-textMuted">No matches found</p>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Desktop chip navigation */}
         <div className="hidden md:flex items-center gap-1.5 overflow-x-auto scrollbar-thin pb-0.5">

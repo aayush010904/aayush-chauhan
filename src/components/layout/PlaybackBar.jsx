@@ -37,9 +37,9 @@ export default function PlaybackBar() {
   }, []);
 
   return (
-    <footer className="bg-black">
+    <footer className="bg-black fixed inset-x-0 bottom-0 z-40 md:static md:z-auto shrink-0">
       {/* ── Mobile Now Playing Bar (Spotify-style mini player) ── */}
-      <div className="md:hidden">
+      <div className="md:hidden pb-[max(env(safe-area-inset-bottom),0.25rem)]">
         {/* Progress line at top */}
         <div className="h-[2px] bg-white/[0.08] relative">
           <motion.div
