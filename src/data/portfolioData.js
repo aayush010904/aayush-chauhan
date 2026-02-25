@@ -84,7 +84,7 @@ export const profile = {
     phone: '+91 99581 06338',
     linkedin: 'https://www.linkedin.com/in/aayushchauhan019',
     github: 'https://github.com/aayush010904',
-    resumeUrl: '/docs/resume.pdf',
+    resumeUrl: '/docs/aayush-resume.pdf',
   },
 };
 
