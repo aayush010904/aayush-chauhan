@@ -227,9 +227,9 @@ export const research = [
       'Extracted and engineered audio features from the Spotify API, applied PCA for dimensionality reduction, and trained Random Forest, Gradient Boosting, and SVM classifiers.',
     results:
       'Achieved 83.17% accuracy with Random Forest, successfully identifying key audio feature patterns that distinguish hit tracks.',
-    publication: 'Under Review',
+    publication: 'IEEE Xplore - SMART Conference, 2025',
     links: {
-      paper: '#',
+      paper: 'https://doi.org/10.1109/SMART66937.2025.11389732',
       code: 'https://github.com/aayush010904/spotify_hits_predictor',
     },
   },
