@@ -11,7 +11,7 @@ export const profile = {
       institution: 'Faculty of Technology, University of Delhi',
       degree: 'B.Tech in Electronics and Communication Engineering',
       duration: '2023 — 2027',
-      highlights: 'Minor in AI/ML · CGPA: 8.03/10 · Coursework: Deep Learning, Signal & Image Processing, Data Analytics',
+      highlights: 'Minor in AI/ML · CGPA: 8.10/10 · Coursework: Deep Learning, Signal & Image Processing, Data Analytics',
     },
   ],
   experience: [
@@ -249,7 +249,7 @@ export const research = [
       'Provided a comprehensive taxonomy of DL-based malware classifiers and identified directions for future research in adversarial robustness.',
     publication: 'Book Chapter — In Press',
     links: {
-      paper: '#',
+      paper: 'https://books.google.co.in/books?id=ggnQEQAAQBAJ&lpg=PA123&ots=ExOZ5h6G2Q&lr&pg=PA122#v=onepage&q&f=false',
     },
   },
 ];
